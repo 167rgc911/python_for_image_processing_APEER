@@ -83,9 +83,14 @@ X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_
 
 #https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html?highlight=svc#sklearn.svm.SVC
 #https://scikit-learn.org/stable/modules/svm.html
-from sklearn import svm
-model = svm.LinearSVC(max_iter=10000)
+#from sklearn import svm
+#model = svm.LinearSVC(max_iter=10000)
 #model = SVC(kernel='linear', C=10, gamma=1000, max_iter=10000)
+
+#use a decision tree
+from sklearn import tree
+model = tree.DecisionTreeClassifier()
+
 model.fit(X_train, y_train)
 
 prediction = model.predict(X_test)
@@ -93,11 +98,28 @@ prediction = model.predict(X_test)
 from sklearn import metrics
 print ("Accuracy = ", metrics.accuracy_score(y_test, prediction))
 
+#... so that we can visualize it
+feature_names = df.drop(labels = ["Label", "id"], axis=1).columns
+t = tree.export_text(model, feature_names=list(feature_names))
+print(t)
+
+#... plot it
+tree.plot_tree(model)
+
+#... get how the features were utilized
+print(model.feature_importances_)
+p_df = pd.DataFrame([list(model.feature_importances_)], columns=list(feature_names))
+print(p_df.isnull().sum())
+#we can remove the features/columns that gave 0 to the prediction
 
 #Confusion Matrix
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, prediction)
 print(cm)
+
+from sklearn.metrics import classification_report
+cr = classification_report(y_test, prediction)
+print(cr)
 
 #Print individual accuracy values for each class, based on the confusion matrix
 print("With Lung disease = ", cm[0,0] / (cm[0,0]+cm[1,0]))
