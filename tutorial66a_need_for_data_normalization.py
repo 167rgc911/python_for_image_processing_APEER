@@ -53,7 +53,7 @@ print(df.isnull().sum())
 #df = df.dropna()
 
 #Rename Dataset to Label to make it easy to understand
-df = df.rename(columns={'Diagnosis':'Label'})
+df = df.rename(columns={'diagnosis':'Label'})
 print(df.dtypes)
 
 #Replace categorical values with numbers
@@ -67,7 +67,7 @@ df['Label'] = df['Label'].replace(categories)
 Y = df["Label"].values
 
 #Define the independent variables. Let's also drop Gender, so we can normalize other data
-X = df.drop(labels = ["Label", "ID"], axis=1) 
+X = df.drop(labels = ["Label", "id"], axis=1)
 
 
 from sklearn.preprocessing import MinMaxScaler
