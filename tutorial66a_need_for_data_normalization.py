@@ -44,7 +44,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 import seaborn as sns
  
-df = pd.read_csv("data/wisconsin_breast_cancer_dataset.csv")
+df = pd.read_csv("ml/DATA/breast_cancer/wisconsin_breast_cancer_dataset.csv")
 
 print(df.describe().T)  #Values need to be normalized before fitting. 
 
