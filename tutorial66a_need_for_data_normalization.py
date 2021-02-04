@@ -98,7 +98,7 @@ def tree_traversal(clf, X_set):
                                         node_indicator.indptr[sample_id + 1]]
 
     print('Rules used to predict sample {id}:\n'.format(id=sample_id))
-        for node_id in node_index:
+    for node_id in node_index:
         # continue to the next node if it is a leaf node
         if leaf_id[sample_id] == node_id:
             continue
