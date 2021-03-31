@@ -39,7 +39,6 @@ https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)
 """
 
 import numpy as np
-import cv2
 import pandas as pd
 from matplotlib import pyplot as plt
 import seaborn as sns
@@ -53,7 +52,7 @@ print(df.isnull().sum())
 #df = df.dropna()
 
 #Rename Dataset to Label to make it easy to understand
-df = df.rename(columns={'Diagnosis':'Label'})
+df = df.rename(columns={'diagnosis':'Label'})
 print(df.dtypes)
 
 #Understand the data 
@@ -80,7 +79,7 @@ df['Label'] = df['Label'].replace(categories)
 Y = df["Label"].values
 
 #Define the independent variables. Let's also drop Gender, so we can normalize other data
-X = df.drop(labels = ["Label", "ID"], axis=1) 
+X = df.drop(labels = ["Label", "id"], axis=1)
 features_list = list(X.columns)  #List features so we can rank them later.
 #from sklearn.preprocessing import normalize
 #X = normalize(X, axis=1)
