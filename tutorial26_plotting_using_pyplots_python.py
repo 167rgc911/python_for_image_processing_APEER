@@ -24,6 +24,8 @@ plt.plot(a,b)
 #Images are numpy arrays
 import cv2
 #gray_img = cv2.imread('images/sandstone.tif', 0)
+#plt.imshow(gray_img, cmap="gray")
+#plt.hist(gray_img.flat, bins=100, range=(0,150))
 gray_img = cv2.imread('/home/rgc/data/images/Sandstone_Versa0180_image.tif', 0)
 
 plt.imshow(gray_img, cmap="gray")

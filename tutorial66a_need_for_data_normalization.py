@@ -39,6 +39,7 @@ https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)
 """
 
 import numpy as np
+#import cv2
 import pandas as pd
 from matplotlib import pyplot as plt
 import seaborn as sns
@@ -119,7 +120,8 @@ def tree_traversal(clf, X_set):
 
     return
 
-df = pd.read_csv("data/wisconsin_breast_cancer_dataset.csv")
+#df = pd.read_csv("data/wisconsin_breast_cancer_dataset.csv")
+df = pd.read_csv("ml/DATA/breast_cancer/wisconsin_breast_cancer_dataset.csv")
 
 print(df.describe().T)  #Values need to be normalized before fitting. 
 
@@ -170,7 +172,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_
 from sklearn import ensemble
 model = ensemble.RandomForestClassifier(bootstrap=False)
 
-
 model.fit(X_train, y_train)
 
 prediction = model.predict(X_test)
@@ -180,10 +181,12 @@ print ("Accuracy = ", metrics.accuracy_score(y_test, prediction))
 
 #... so that we can visualize it
 feature_names = df.drop(labels = ["Label", "id"], axis=1).columns
+#t = tree.export_text(model, feature_names=list(feature_names))
 t = tree.export_text(model.estimators_[1], feature_names=list(feature_names))
 print(t)
 
 #... plot it
+#tree.plot_tree(model)
 tree.plot_tree(model.estimators_[1])
 
 #... get how the features were utilized
